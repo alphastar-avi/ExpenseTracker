@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { LogOut, Download, Calendar } from 'lucide-react';
+import { LogOut, Download, Calendar, Settings } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import type { Transaction } from '../types';
 
@@ -20,7 +21,8 @@ const MONTHS = [
 ];
 
 const Dashboard: React.FC = () => {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -148,8 +150,10 @@ const Dashboard: React.FC = () => {
 
           <div className="h-6 w-px bg-border" />
 
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-muted-foreground hidden sm:inline">{user?.email}</span>
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" onClick={() => navigate('/settings')} title="Settings">
+              <Settings className="size-4" />
+            </Button>
             <Button variant="outline" size="icon" onClick={logout} title="Logout">
               <LogOut className="size-4" />
             </Button>

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Settings from './pages/Settings';
 import { useAuth } from './context/AuthContext';
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -31,6 +32,14 @@ function App() {
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          } 
+        />
+        <Route 
+          path="/settings" 
+          element={
+            <PrivateRoute>
+              <Settings />
             </PrivateRoute>
           } 
         />

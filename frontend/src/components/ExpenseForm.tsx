@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import api from '../api';
+import { useAuth } from '../context/AuthContext';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { getCategories } from '../pages/Settings';
 
 interface ExpenseFormProps {
   onSuccess: () => void;
   selectedDate: Date;
 }
 
-const CATEGORIES = ["Food", "Snacks", "Travel", "Others", "Gifts", "Health"];
 
 const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSuccess, selectedDate }) => {
+  const { user } = useAuth();
+  const CATEGORIES = getCategories(user?.id ?? 0);
   const [category, setCategory] = useState(CATEGORIES[0]);
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');

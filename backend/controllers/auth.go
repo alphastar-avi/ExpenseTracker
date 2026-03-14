@@ -14,6 +14,7 @@ import (
 
 func Register(c *gin.Context) {
 	var body struct {
+		Name     string `json:"name"`
 		Email    string `json:"email"`
 		Password string `json:"password"`
 	}
@@ -29,7 +30,7 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	user := models.User{Email: body.Email, PasswordHash: string(hash), CreatedAt: time.Now()}
+	user := models.User{Name: body.Name, Email: body.Email, PasswordHash: string(hash), CreatedAt: time.Now()}
 	result := database.DB.Create(&user)
 
 	if result.Error != nil {
@@ -80,6 +81,7 @@ func Login(c *gin.Context) {
 		"token": tokenString,
 		"user": gin.H{
 			"id":    user.ID,
+			"name":  user.Name,
 			"email": user.Email,
 		},
 	})

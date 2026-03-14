@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 
 const Login: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,7 +29,7 @@ const Login: React.FC = () => {
         login(data.token, data.user);
         navigate('/');
       } else {
-        await api.post('/auth/register', { email, password });
+        await api.post('/auth/register', { name, email, password });
         setIsLogin(true);
         setError('Registration successful! Please login.');
       }
@@ -63,6 +64,20 @@ const Login: React.FC = () => {
           )}
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {!isLogin && (
+              <div className="space-y-2">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
               <Input
