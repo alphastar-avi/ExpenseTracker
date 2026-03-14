@@ -95,9 +95,8 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  // Years: 5 years back + current + 4 years forward
-  const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i);
+  // Years: 2026 to 2056
+  const years = Array.from({ length: 31 }, (_, i) => 2026 + i);
 
   return (
     <div className="p-4 md:p-6 max-w-[1400px] mx-auto">
