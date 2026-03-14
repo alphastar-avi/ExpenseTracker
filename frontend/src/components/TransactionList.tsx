@@ -43,7 +43,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions, onDelet
 
           <div className="flex items-center gap-3 shrink-0">
             <span className={`font-bold text-sm ${t.type === 'income' ? 'text-emerald-600 dark:text-emerald-400' : 'text-destructive'}`}>
-              {t.type === 'income' ? '+' : '-'}${t.amount.toFixed(2)}
+              {t.type === 'income' ? '+' : '-'}₹{t.amount.toFixed(2)}
             </span>
             <Button
               variant="ghost"

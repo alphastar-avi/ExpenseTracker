@@ -75,10 +75,10 @@ const Dashboard: React.FC = () => {
   const years = Array.from({ length: 6 }, (_, i) => currentYear - i);
 
   return (
-    <div className="p-6 max-w-[1400px] mx-auto">
+    <div className="p-4 md:p-6 max-w-[1400px] mx-auto">
       
       {/* Header */}
-      <header className="flex justify-between items-center mb-6">
+      <header className="flex flex-wrap justify-between items-center gap-3 mb-6">
         <h1 className="text-2xl font-bold text-foreground">CashFlow</h1>
 
         <div className="flex items-center gap-4">
@@ -149,7 +149,7 @@ const Dashboard: React.FC = () => {
           <div className="h-6 w-px bg-border" />
 
           <div className="flex items-center gap-3">
-            <span className="text-sm text-muted-foreground">{user?.email}</span>
+            <span className="text-sm text-muted-foreground hidden sm:inline">{user?.email}</span>
             <Button variant="outline" size="icon" onClick={logout} title="Logout">
               <LogOut className="size-4" />
             </Button>
@@ -158,14 +158,14 @@ const Dashboard: React.FC = () => {
       </header>
 
       {/* Main Layout Grid */}
-      <div className="grid grid-cols-[minmax(0,1fr)_350px] gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_350px] gap-6">
         
         {/* Left Column: Sankey + Add Expense */}
         <div className="flex flex-col gap-6">
           
           {/* Sankey Diagram */}
           <Card>
-            <CardContent className="h-[400px] flex items-center justify-center overflow-hidden p-0">
+            <CardContent className="h-[300px] md:h-[400px] flex items-center justify-center overflow-hidden p-0">
               {loading ? (
                 <p className="text-muted-foreground">Loading Activity...</p>
               ) : (
@@ -177,7 +177,7 @@ const Dashboard: React.FC = () => {
           {/* Add Expense */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-destructive">Add Expense</CardTitle>
+              <CardTitle style={{ color: 'rgb(59, 118, 175)' }}>Add Expense</CardTitle>
             </CardHeader>
             <CardContent>
               <ExpenseForm onSuccess={fetchTransactions} selectedDate={selectedDate} />
@@ -186,7 +186,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Right Column: Transactions List */}
-        <Card className="flex flex-col h-[calc(400px+24px+300px)]">
+        <Card className="flex flex-col h-auto lg:h-[calc(400px+24px+300px)]">
           <CardHeader className="flex-row items-center justify-between">
             <CardTitle>Transactions</CardTitle>
             {transactions.length > 0 && (

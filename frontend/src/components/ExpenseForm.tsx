@@ -86,7 +86,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSuccess, selectedDate }) =>
         />
       </div>
 
-      <Button type="submit" variant="destructive" className="mt-1" disabled={loading}>
+      <Button type="submit" className="mt-1 text-white hover:opacity-90" style={{ backgroundColor: 'rgb(59, 118, 175)' }} disabled={loading}>
         {loading ? 'Adding...' : 'Add Expense'}
       </Button>
     </form>
